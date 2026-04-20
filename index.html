@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>COO Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #F4F4F6;
+      --surface:     #FFFFFF;
+      --border:      #E4E4E8;
+      --text-primary:#111118;
+      --text-secondary:#6B6B7B;
+      --text-muted:  #9999AA;
+      --accent:      #1A1A2E;
+      --red:         #E5484D;
+      --red-soft:    #FFF1F1;
+      --blue:        #3B6FE8;
+      --blue-soft:   #EEF3FD;
+      --purple:      #7C3AED;
+      --purple-soft: #F3EEFE;
+      --amber:       #D97706;
+      --amber-soft:  #FFFBEB;
+      --teal:        #0D9488;
+      --teal-soft:   #F0FDFA;
+      --green:       #16A34A;
+      --shadow-sm:   0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow-md:   0 4px 12px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.04);
+      --radius:      12px;
+      --radius-sm:   8px;
+    }
+
+    html { font-size: 15px; -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      padding-bottom: env(safe-area-inset-bottom, 24px);
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────── */
+    .page-header {
+      background: var(--accent);
+      color: #fff;
+      padding: 52px 20px 28px;
+      padding-top: max(52px, calc(env(safe-area-inset-top) + 32px));
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .page-header .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 4px;
+    }
+    .page-header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -.5px;
+      line-height: 1.1;
+      color: #fff;
+    }
+    .page-header .updated {
+      font-size: 12px;
+      color: rgba(255,255,255,.38);
+      margin-top: 6px;
+    }
+
+    /* ─── LAYOUT ─────────────────────────────────────────── */
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    /* ─── SECTION ─────────────────────────────────────────── */
+    .section { margin-bottom: 28px; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding: 0 2px;
+    }
+    .section-header .icon { font-size: 16px; line-height: 1; }
+    .section-header h2 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+    .section-header .badge {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--border);
+      color: var(--text-secondary);
+      padding: 2px 7px;
+      border-radius: 20px;
+    }
+
+    /* ─── MEETING CARDS ──────────────────────────────────── */
+    .meeting-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .meeting-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .time-badge {
+      flex-shrink: 0;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      padding: 4px 9px;
+      border-radius: 6px;
+      margin-top: 1px;
+    }
+    .time-badge.blue   { background: var(--blue-soft);   color: var(--blue); }
+    .time-badge.purple { background: var(--purple-soft); color: var(--purple); }
+    .time-badge.amber  { background: var(--amber-soft);  color: var(--amber); }
+    .time-badge.teal   { background: var(--teal-soft);   color: var(--teal); }
+
+    .meeting-meta { flex: 1; min-width: 0; }
+    .meeting-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+    .meeting-attendees {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .meeting-bullets {
+      padding: 10px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .meeting-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+    .meeting-bullet::before {
+      content: '';
+      flex-shrink: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--border);
+      margin-top: 7px;
+    }
+    .meeting-bullet strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+    .meeting-bullet.alert { color: var(--red); }
+    .meeting-bullet.alert::before { background: var(--red); }
+
+    /* ─── PRIORITY LIST ──────────────────────────────────── */
+    .task-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 16px;
+      border-bottom: 1px solid var(--border);
+      transition: background .12s;
+    }
+    .task-item:last-child { border-bottom: none; }
+    .task-item:active { background: var(--bg); }
+
+    .task-check {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      border: 1.5px solid var(--border);
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .task-check.done {
+      background: var(--green);
+      border-color: var(--green);
+    }
+    .task-check.done::after {
+      content: '';
+      width: 10px;
+      height: 6px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) translateY(-1px);
+    }
+    .task-text {
+      flex: 1;
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--text-primary);
+    }
+    .task-text.done {
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    /* ─── ACTION ITEMS ───────────────────────────────────── */
+    .action-item {
+      display: flex;
+      flex-direction: column;
+      padding: 11px 16px;
+      border-bottom: 1px solid var(--border);
+      gap: 3px;
+    }
+    .action-item:last-child { border-bottom: none; }
+    .action-text {
+      font-size: 14px;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+    .action-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .action-owner {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 20px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      margin-right: 6px;
+    }
+
+    /* ─── WEEK SCHEDULE ──────────────────────────────────── */
+    .day-group { margin-bottom: 10px; }
+    .day-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 0 4px;
+      margin-bottom: 6px;
+    }
+    .week-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .week-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .week-item:last-child { border-bottom: none; }
+    .week-time {
+      flex-shrink: 0;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      width: 42px;
+    }
+    .week-meeting {
+      flex: 1;
+      min-width: 0;
+    }
+    .week-title {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .week-attendees {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .week-dot {
+      flex-shrink: 0;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+    .week-dot.blue   { background: var(--blue); }
+    .week-dot.purple { background: var(--purple); }
+    .week-dot.amber  { background: var(--amber); }
+    .week-dot.teal   { background: var(--teal); }
+
+    /* ─── COLLAPSIBLE ────────────────────────────────────── */
+    details > summary {
+      list-style: none;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    details > summary::-webkit-details-marker { display: none; }
+    .collapsible-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 2px;
+      margin-bottom: 0;
+    }
+    .collapsible-header h2 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+    .collapsible-header .icon { font-size: 16px; }
+    .collapsible-header .badge {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--border);
+      color: var(--text-secondary);
+      padding: 2px 7px;
+      border-radius: 20px;
+    }
+    .chevron {
+      margin-left: 4px;
+      font-size: 12px;
+      color: var(--text-muted);
+      transition: transform .2s;
+    }
+    details[open] .chevron { transform: rotate(90deg); }
+    details .collapsible-body { margin-top: 12px; }
+
+    /* ─── DIVIDER ─────────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 4px 0 28px;
+    }
+
+    /* ─── EMPTY STATE ────────────────────────────────────── */
+    .empty {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<header class="page-header">
+  <div class="label">COO · HEXR / Releaselayer</div>
+  <h1>Monday, 20 April</h1>
+  <div class="updated">Last updated: 20 April 2026</div>
+</header>
+
+<div class="content">
+
+  <!-- ══════════ TODAY ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">📅</span>
+      <h2>Today</h2>
+      <span class="badge">4 meetings</span>
+    </div>
+
+    <!-- Asia Production Weekly -->
+    <div class="meeting-card">
+      <div class="meeting-card-header">
+        <span class="time-badge teal">08:00</span>
+        <div class="meeting-meta">
+          <div class="meeting-title">Asia Production Weekly</div>
+          <div class="meeting-attendees">Cristian · Asia production team</div>
+        </div>
+      </div>
+      <div class="meeting-bullets">
+        <div class="meeting-bullet">Standing weekly production sync — no prior notes to carry forward yet</div>
+      </div>
+    </div>
+
+    <!-- Tony + Jamie 1:1 -->
+    <div class="meeting-card">
+      <div class="meeting-card-header">
+        <span class="time-badge blue">10:00</span>
+        <div class="meeting-meta">
+          <div class="meeting-title">Tony + Jamie 1:1</div>
+          <div class="meeting-attendees">Jamie</div>
+        </div>
+      </div>
+      <div class="meeting-bullets">
+        <div class="meeting-bullet"><strong>Theo off-boarding:</strong> Alliana cannot be moved onto marketing — raise explicitly</div>
+        <div class="meeting-bullet"><strong>Theo off-boarding:</strong> Jamie needs to document Theo's full job responsibilities</div>
+        <div class="meeting-bullet alert"><strong>Oakley / CyclingNews:</strong> Do NOT agree to helmet test request — raise directly</div>
+        <div class="meeting-bullet"><strong>Nick:</strong> Nick is in Europe next week — Jamie should try to connect with him</div>
+        <div class="meeting-bullet"><strong>Marketing JD + Office Manager:</strong> Start thinking about both roles post-Theo</div>
+      </div>
+    </div>
+
+    <!-- SLT Weekly -->
+    <div class="meeting-card">
+      <div class="meeting-card-header">
+        <span class="time-badge purple">11:00</span>
+        <div class="meeting-meta">
+          <div class="meeting-title">SLT Weekly</div>
+          <div class="meeting-attendees">James · Tony · Chris &nbsp;·&nbsp; 2 hrs</div>
+        </div>
+      </div>
+      <div class="meeting-bullets">
+        <div class="meeting-bullet">VCs approaching wanting to invest — financial model for RLS-C needed</div>
+        <div class="meeting-bullet">Strategic imperative on energy absorption still live</div>
+        <div class="meeting-bullet"><strong>Studson SLA</strong> — flag for May board meeting</div>
+        <div class="meeting-bullet">Chris's proposal: SHK-1 first, THEN energy management development</div>
+        <div class="meeting-bullet">Senior hire for bandwidth — still open</div>
+        <div class="meeting-bullet">David to create PC thermoforming CAD for their helmet — check status</div>
+      </div>
+    </div>
+
+    <!-- Paige Overman Interview -->
+    <div class="meeting-card">
+      <div class="meeting-card-header">
+        <span class="time-badge amber">14:00</span>
+        <div class="meeting-meta">
+          <div class="meeting-title">Paige Overman — PM Interview</div>
+          <div class="meeting-attendees">Candidate</div>
+        </div>
+      </div>
+      <div class="meeting-bullets">
+        <div class="meeting-bullet"><strong>Strong:</strong> Trek helmet experience (concept → production), infrastructure building</div>
+        <div class="meeting-bullet alert"><strong>Critical gap to probe: Asian manufacturing</strong> — nothing on CV, core JD requirement</div>
+        <div class="meeting-bullet"><strong>Watch:</strong> short tenures at recent roles (Tesla 9m, Trek 15m)</div>
+        <div class="meeting-bullet"><strong>Ask early:</strong> open to Asia travel and London visits?</div>
+        <div class="meeting-bullet">Full question list ready in prep note</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ HIGH PRIORITY ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">🔴</span>
+      <h2>High Priority</h2>
+    </div>
+    <div class="task-card">
+      <div class="task-item">
+        <div class="task-check done"></div>
+        <div class="task-text done">Connect Alex and Mike re: new hire</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check done"></div>
+        <div class="task-text done">Order Milwaukee helmet for Darcy</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check done"></div>
+        <div class="task-text done">Post Junior Engineer Job description</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check"></div>
+        <div class="task-text">Discuss with David the idea of making overfit design of JSP helmet</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check"></div>
+        <div class="task-text">Create JD for more Senior person</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check"></div>
+        <div class="task-text">Need to work on the Nick contract</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check"></div>
+        <div class="task-text">Set aside time for Studson engineering sign-off</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check"></div>
+        <div class="task-text">Set aside time to do engineering checklist</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check"></div>
+        <div class="task-text">Set aside time to do pre-flight checklist</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check"></div>
+        <div class="task-text">Set aside time to do all stagegate building</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check"></div>
+        <div class="task-text">Cristian's review</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check"></div>
+        <div class="task-text">James' review</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check"></div>
+        <div class="task-text">Archie's review</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check"></div>
+        <div class="task-text">RLS-C Feedback</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check"></div>
+        <div class="task-text">Create a 2D template with the team on A-surfaces — review with product team, production team, and potentially pay Marco</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ ACTION ITEMS FROM NOTES ══════════ -->
+  <details class="section" open>
+    <summary>
+      <div class="collapsible-header">
+        <span class="icon">⚡</span>
+        <h2>Action Items from Notes</h2>
+        <span class="badge">4</span>
+        <span class="chevron">›</span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+      <div class="task-card">
+        <div class="action-item">
+          <div class="action-text">Tell Jamie: Alliana cannot work on marketing post Theo offboarding</div>
+          <div class="action-meta"><span class="action-owner">Tony</span> End-of-Week Catchup</div>
+        </div>
+        <div class="action-item">
+          <div class="action-text">Jamie to document Theo's full job responsibilities</div>
+          <div class="action-meta"><span class="action-owner">Jamie</span> End-of-Week Catchup</div>
+        </div>
+        <div class="action-item">
+          <div class="action-text">Raise with Jamie: do NOT agree to Oakley/CyclingNews helmet test request</div>
+          <div class="action-meta"><span class="action-owner">Tony</span> Theo 1:1 · 17 Apr</div>
+        </div>
+        <div class="action-item">
+          <div class="action-text">Jamie to try to connect with Nick while he's in Europe</div>
+          <div class="action-meta"><span class="action-owner">Jamie</span> SBC Alignment · 17 Apr</div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ══════════ THIS WEEK ══════════ -->
+  <details class="section" open>
+    <summary>
+      <div class="collapsible-header">
+        <span class="icon">🗓️</span>
+        <h2>This Week — 20–24 April</h2>
+        <span class="chevron">›</span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+
+      <div class="day-group">
+        <div class="day-label">Tuesday 21</div>
+        <div class="week-card">
+          <div class="week-item">
+            <div class="week-time">14:00</div>
+            <div class="week-dot blue"></div>
+            <div class="week-meeting">
+              <div class="week-title">Tony–Alex 1:1</div>
+              <div class="week-attendees">Alex</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">14:30</div>
+            <div class="week-dot blue"></div>
+            <div class="week-meeting">
+              <div class="week-title">Maria / Tony 1:1</div>
+              <div class="week-attendees">Maria</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">15:00</div>
+            <div class="week-dot blue"></div>
+            <div class="week-meeting">
+              <div class="week-title">James / Tony 1:1</div>
+              <div class="week-attendees">James H.</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">15:45</div>
+            <div class="week-dot blue"></div>
+            <div class="week-meeting">
+              <div class="week-title">Archie / Tony 1:1</div>
+              <div class="week-attendees">Archie</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-group">
+        <div class="day-label">Wednesday 22</div>
+        <div class="week-card">
+          <div class="week-item">
+            <div class="week-time">09:30</div>
+            <div class="week-dot purple"></div>
+            <div class="week-meeting">
+              <div class="week-title">RLS / SIM Weekly Dev</div>
+              <div class="week-attendees">Archie, Alex, Edwin, Kwai + SIM team</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">15:00</div>
+            <div class="week-dot blue"></div>
+            <div class="week-meeting">
+              <div class="week-title">Tony / CP</div>
+              <div class="week-attendees">Chris P.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-group">
+        <div class="day-label">Thursday 23</div>
+        <div class="week-card">
+          <div class="week-item">
+            <div class="week-time">12:00</div>
+            <div class="week-dot blue"></div>
+            <div class="week-meeting">
+              <div class="week-title">Cristian / Tony 1:1</div>
+              <div class="week-attendees">Cristian</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">13:00</div>
+            <div class="week-dot purple"></div>
+            <div class="week-meeting">
+              <div class="week-title">Studson Weekly Meeting</div>
+              <div class="week-attendees">James H., Maria, Chris, Alex, Darcy, Archie</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">14:00</div>
+            <div class="week-dot blue"></div>
+            <div class="week-meeting">
+              <div class="week-title">David / Tony</div>
+              <div class="week-attendees">David</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">15:00</div>
+            <div class="week-dot blue"></div>
+            <div class="week-meeting">
+              <div class="week-title">Alonso / Tony 1:1</div>
+              <div class="week-attendees">Alonso</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-group">
+        <div class="day-label">Friday 24</div>
+        <div class="week-card">
+          <div class="week-item">
+            <div class="week-time">09:30</div>
+            <div class="week-dot teal"></div>
+            <div class="week-meeting">
+              <div class="week-title">Pista R3 RLS X Point</div>
+              <div class="week-attendees">Dainese team, Archie, Maria</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">13:00</div>
+            <div class="week-dot purple"></div>
+            <div class="week-meeting">
+              <div class="week-title">End of Week Catchup</div>
+              <div class="week-attendees">Cristian, Alex</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">15:00</div>
+            <div class="week-dot teal"></div>
+            <div class="week-meeting">
+              <div class="week-title">Publication Review &amp; Forward Plan</div>
+              <div class="week-attendees">Maria, James, Chris, Tony, Greg</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">15:00</div>
+            <div class="week-dot teal"></div>
+            <div class="week-meeting">
+              <div class="week-title">Weekly Lab Cleanup</div>
+              <div class="week-attendees">Full team</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">17:00</div>
+            <div class="week-dot amber"></div>
+            <div class="week-meeting">
+              <div class="week-title">Dr. Abram / Tony Catchup</div>
+              <div class="week-attendees">Dr. Abram (Pikio), James</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+  <!-- ══════════ NEXT WEEK ══════════ -->
+  <details class="section">
+    <summary>
+      <div class="collapsible-header">
+        <span class="icon">🗓️</span>
+        <h2>Next Week — 27 Apr – 1 May</h2>
+        <span class="chevron">›</span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+
+      <div class="day-group">
+        <div class="day-label">Monday 27</div>
+        <div class="week-card">
+          <div class="week-item">
+            <div class="week-time">12:00</div>
+            <div class="week-dot teal"></div>
+            <div class="week-meeting">
+              <div class="week-title">Asia Production Weekly</div>
+              <div class="week-attendees">Cristian</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">14:00</div>
+            <div class="week-dot blue"></div>
+            <div class="week-meeting">
+              <div class="week-title">Tony + Jamie 1:1</div>
+              <div class="week-attendees">Jamie</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">15:00</div>
+            <div class="week-dot purple"></div>
+            <div class="week-meeting">
+              <div class="week-title">SLT Weekly</div>
+              <div class="week-attendees">James, Tony, Chris</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-group">
+        <div class="day-label">Tuesday 28</div>
+        <div class="week-card">
+          <div class="week-item">
+            <div class="week-time">07:30</div>
+            <div class="week-dot amber"></div>
+            <div class="week-meeting">
+              <div class="week-title">WG: EON — Canyon</div>
+              <div class="week-attendees">Canyon team, Cristian, Alex</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">14:00</div>
+            <div class="week-dot blue"></div>
+            <div class="week-meeting">
+              <div class="week-title">Tony–Alex 1:1</div>
+              <div class="week-attendees">Alex</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">15:00</div>
+            <div class="week-dot blue"></div>
+            <div class="week-meeting">
+              <div class="week-title">James / Tony 1:1</div>
+              <div class="week-attendees">James H.</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">15:30</div>
+            <div class="week-dot amber"></div>
+            <div class="week-meeting">
+              <div class="week-title">Oakley / HEXR Catch Up</div>
+              <div class="week-attendees">Oakley team, Archie, Jamie</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">15:45</div>
+            <div class="week-dot blue"></div>
+            <div class="week-meeting">
+              <div class="week-title">Archie / Tony 1:1</div>
+              <div class="week-attendees">Archie</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-group">
+        <div class="day-label">Wednesday 29</div>
+        <div class="week-card">
+          <div class="week-item">
+            <div class="week-time">09:30</div>
+            <div class="week-dot purple"></div>
+            <div class="week-meeting">
+              <div class="week-title">RLS / SIM Weekly Dev</div>
+              <div class="week-attendees">Archie, Alex, Edwin, Kwai + SIM team</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">15:00</div>
+            <div class="week-dot blue"></div>
+            <div class="week-meeting">
+              <div class="week-title">Tony / CP</div>
+              <div class="week-attendees">Chris P.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-group">
+        <div class="day-label">Thursday 30</div>
+        <div class="week-card">
+          <div class="week-item">
+            <div class="week-time">12:00</div>
+            <div class="week-dot blue"></div>
+            <div class="week-meeting">
+              <div class="week-title">Cristian / Tony 1:1</div>
+              <div class="week-attendees">Cristian</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">13:00</div>
+            <div class="week-dot purple"></div>
+            <div class="week-meeting">
+              <div class="week-title">Studson Weekly Meeting</div>
+              <div class="week-attendees">James H., Maria, Chris, Alex, Darcy, Archie</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">15:00</div>
+            <div class="week-dot blue"></div>
+            <div class="week-meeting">
+              <div class="week-title">Alonso / Tony 1:1</div>
+              <div class="week-attendees">Alonso</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-group">
+        <div class="day-label">Friday 1 May</div>
+        <div class="week-card">
+          <div class="week-item">
+            <div class="week-time">09:30</div>
+            <div class="week-dot teal"></div>
+            <div class="week-meeting">
+              <div class="week-title">Pista R3 RLS X Point</div>
+              <div class="week-attendees">Dainese team, Archie, Maria</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">13:00</div>
+            <div class="week-dot purple"></div>
+            <div class="week-meeting">
+              <div class="week-title">End of Week Catchup</div>
+              <div class="week-attendees">Cristian, Alex</div>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-time">15:00</div>
+            <div class="week-dot teal"></div>
+            <div class="week-meeting">
+              <div class="week-title">Weekly Lab Cleanup</div>
+              <div class="week-attendees">Full team</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </details>
+
+</div><!-- /content -->
+</body>
+</html>
