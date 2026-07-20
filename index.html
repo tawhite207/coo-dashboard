@@ -280,113 +280,69 @@
       background: var(--border);
       margin: 20px 0;
     }
+
+    /* Digest */
+    .digest-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow-sm);
+    }
+    .digest-lede {
+      font-size: 13px; font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .digest-note {
+      font-size: 12px; color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .watch-strip {
+      background: var(--amber-soft);
+      border: 1px solid #F3D9A4;
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #92500A;
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+    .wait-table { width: 100%; border-collapse: collapse; }
+    .wait-table td {
+      font-size: 13px;
+      padding: 9px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      line-height: 1.45;
+    }
+    .wait-table tr:last-child td { border-bottom: none; }
+    .wait-who {
+      font-size: 11px; font-weight: 600;
+      background: var(--blue-soft); color: var(--blue);
+      padding: 2px 7px; border-radius: 10px;
+      white-space: nowrap;
+    }
+    .wait-ctx { color: var(--text-muted); font-size: 12px; }
+    .src-tag { font-size: 11px; color: var(--text-muted); }
   </style>
 </head>
 <body>
 
 <header class="page-header">
   <div class="label">COO · HEXR / Releaselayer</div>
-  <h1>Monday 20 July</h1>
-  <div class="updated">Last updated: 17 July 2026</div>
+  <h1>Tuesday 21 July</h1>
+  <div class="updated">Built Mon evening 20 Jul · from Granola</div>
 </header>
 
 <div class="content">
 
-  <!-- ══════════ TOMORROW ══════════ -->
+  <!-- ══════════ MY TO-DOS ══════════ -->
   <div class="section">
     <div class="section-header">
-      <span class="icon">📅</span>
-      <h2>Tomorrow — Mon 20 July</h2>
-      <span class="badge">5 events</span>
-    </div>
-
-    <div class="meeting-card">
-      <div class="meeting-card-header">
-        <span class="time-badge teal">08:00</span>
-        <div class="meeting-meta">
-          <div class="meeting-title">Asia Production Weekly</div>
-          <div class="meeting-attendees">Cristian + Asia production team</div>
-        </div>
-      </div>
-      <div class="meeting-bullets">
-        <div class="meeting-bullet">Production status sweep across active Asia programmes — changes since 13 Jul</div>
-        <div class="meeting-bullet">BPA analysis — official lab documents still outstanding (open since 22 Jun)</div>
-        <div class="meeting-bullet">Ball populator import — progress on bringing it into production</div>
-        <div class="meeting-bullet">Quality/assembly and shipment/logistics — new issues to flag</div>
-        <div class="meeting-bullet">AGV Pista DFMEA gate at 11:00 today — flag any Asia production readiness input Cristian should feed in</div>
-      </div>
-    </div>
-    <div class="meeting-card">
-      <div class="meeting-card-header">
-        <span class="time-badge teal">09:00</span>
-        <div class="meeting-meta">
-          <div class="meeting-title">Project Status Update</div>
-          <div class="meeting-attendees">Archie, Alonso, James H., David, Alex, Marium</div>
-        </div>
-      </div>
-      <div class="meeting-bullets">
-        <div class="meeting-bullet">Programme sweep: Pista R3, Dissident, Canyon Aero, Stingr CFR, SHK-1, Rev Aero 7 — updates since 13 Jul</div>
-        <div class="meeting-bullet">Rev Aero 7 final peer review / DFMEA ran Tue 14 Jul — capture outcomes and actions</div>
-        <div class="meeting-bullet">AGV Pista DFMEA review / commercial-pilot approval follows at 11:00 — confirm the team is ready</div>
-        <div class="meeting-bullet">Chris&#x27;s CAD-for-tab-review list — Rev (Alonso) still open; Alpha Wave, Bell XR2, Thousand Pinnacle done</div>
-        <div class="meeting-bullet">Confirm action owners and due dates before close</div>
-      </div>
-    </div>
-    <div class="meeting-card">
-      <div class="meeting-card-header">
-        <span class="time-badge blue">10:00</span>
-        <div class="meeting-meta">
-          <div class="meeting-title">Tony + Jamie 1:1</div>
-          <div class="meeting-attendees">Jamie</div>
-        </div>
-      </div>
-      <div class="meeting-bullets">
-        <div class="meeting-bullet">Open High Priority items: Prop 65 compliant SLAs, Alex&#x27;s Silverstone travel approval, Alliana office manager transition, emergency account funds, Ricky feedback — status on each</div>
-        <div class="meeting-bullet">August reviews (Alex, James, Archie, David) — get dates locked</div>
-        <div class="meeting-bullet">RACI for Alex vs Cristian/Nick/Maria &amp; Chris — progress on heads&#x27; overlap lists</div>
-        <div class="meeting-bullet">Debrief Friday&#x27;s RLS-Evoke (HLM) meeting — next steps and owners</div>
-        <div class="meeting-bullet">AGV Pista DFMEA gate at 11:00 — anything Jamie wants raised</div>
-      </div>
-    </div>
-    <div class="meeting-card">
-      <div class="meeting-card-header">
-        <span class="time-badge purple">11:00</span>
-        <div class="meeting-meta">
-          <div class="meeting-title">AGV Pista: DFMEA Review / Approval to Commercial Pilot</div>
-          <div class="meeting-attendees">Marium, Tony, Archie, Maria, Cristian, Noah, Darcy, James H., David, Alonso</div>
-        </div>
-      </div>
-      <div class="meeting-bullets">
-        <div class="meeting-bullet">Decision gate: approval to commercial pilot — confirm criteria and who signs off</div>
-        <div class="meeting-bullet">Carry-ins from Fri 17 Jul Dainese weekly — pin validation close-out (Archie) and Dainese readiness asks</div>
-        <div class="meeting-bullet">Open DFMEA items by severity — agree owners and dates for anything blocking approval</div>
-        <div class="meeting-bullet">Full product team attending — keep to the decision; park detail into actions</div>
-        <div class="meeting-bullet">Capture any conditions attached to approval for Dainese comms</div>
-      </div>
-    </div>
-    <div class="meeting-card">
-      <div class="meeting-card-header">
-        <span class="time-badge amber">12:00</span>
-        <div class="meeting-meta">
-          <div class="meeting-title">SHK1 | RLS | Weekly</div>
-          <div class="meeting-attendees">James H., M. Herold (Studson), Tony, Marium, S. McClard (Studson), Darcy</div>
-        </div>
-      </div>
-      <div class="meeting-bullets">
-        <div class="meeting-bullet">SHK-1 programme status — updates since the 13 Jul sync</div>
-        <div class="meeting-bullet">Open actions from previous Studson syncs — close or escalate</div>
-        <div class="meeting-bullet">Studson SLA — future SLAs must be Prop 65 compliant (High Priority); raise if contracts touched</div>
-        <div class="meeting-bullet">EON weekly runs Tue 05:00 — sequence Studson vs EON topics</div>
-        <div class="meeting-bullet">Factory comms / manufacturing readiness — decisions needed from Tony&#x27;s side</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══════════ HIGH PRIORITY ══════════ -->
-  <div class="section">
-    <div class="section-header">
-      <span class="icon">🔴</span>
-      <h2>High Priority</h2>
+      <span class="icon">✍️</span>
+      <h2>My To-Dos</h2>
     </div>
     <div class="task-card">
       <div class="task-item"><div class="task-check"></div><div class="task-text">SLT - 3D printer for each person? $2,000</div></div>
@@ -417,84 +373,184 @@
       <div class="task-item"><div class="task-check"></div><div class="task-text">James&#x27; review (By August)</div></div>
       <div class="task-item"><div class="task-check"></div><div class="task-text">Archie&#x27;s review (By August)</div></div>
       <div class="task-item"><div class="task-check"></div><div class="task-text">David (By August)</div></div>
+      <div class="task-item" style="padding:4px 16px;background:var(--bg);border-bottom:1px solid var(--border)"><div class="task-text" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-muted)">From meetings</div></div>
+      <div class="task-item"><div class="task-check"></div><div class="task-text">Draft Milo&#x27;s employment contract (UK standard) — Jamie handles the option agreement separately <span class="src-tag">· Tony+Jamie 1on1, 20 Jul</span></div></div>
+      <div class="task-item"><div class="task-check"></div><div class="task-text">Review and return EOR contract — arrives today, return in the Wed–Fri window <span class="src-tag">· Tony+Jamie 1on1, 20 Jul</span></div></div>
+      <div class="task-item"><div class="task-check"></div><div class="task-text">Schedule SLT once TRL/Studs test results are in — aim Fri 24 Jul <span class="src-tag">· Tony+Jamie 1on1, 20 Jul</span></div></div>
+      <div class="task-item"><div class="task-check"></div><div class="task-text">Set up Thursday 270-impact troubleshooting meeting — only if Archie/Marium haven&#x27;t found root cause by then <span class="src-tag">· Project Status Update, 20 Jul</span></div></div>
+      <div class="task-item"><div class="task-check"></div><div class="task-text">Build Ambush test plan with Archie and Alonso — frontal coverage options, open questions for Ion/Specialized <span class="src-tag">· Project Status Update, 20 Jul</span></div></div>
+      <div class="task-item"><div class="task-check"></div><div class="task-text">Send meeting agenda to Marium for the ALSO call <span class="src-tag">· Project Status Update, 20 Jul</span></div></div>
+      <div class="task-item"><div class="task-check"></div><div class="task-text">Align Gary on China expansion before the August board meeting — with Chris; IP concerns, aim to avoid a board vote <span class="src-tag">· Asia Production Weekly, 20 Jul</span></div></div>
+      <div class="task-item"><div class="task-check"></div><div class="task-text">Raise Cristian&#x27;s CPIM course with Jamie — ~£1,600, proposed 50/50 split from development budget <span class="src-tag">· Asia Production Weekly, 20 Jul</span></div></div>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- ══════════ ACTION ITEMS ══════════ -->
-  <details>
-    <summary>
-      <div class="collapsible-header">
-        <span class="icon">⚡</span>
-        <h2>Action Items from Notes</h2>
-        <span class="badge">0</span>
-        <span class="chevron">▶</span>
-      </div>
-    </summary>
-    <div class="collapsible-body">
-      <div class="task-card">
-        <div class="empty">No open action items found in meeting notes.</div>
-      </div>
+  <!-- ══════════ WAITING ON ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">⏳</span>
+      <h2>Waiting On</h2>
+      <span class="badge">7</span>
     </div>
-  </details>
+    <div class="task-card">
+      <table class="wait-table">
+        <tr><td><span class="wait-who">Jamie</span></td><td>Check in with Greg on ALSO electronics delays, then escalate to Chris<div class="wait-ctx">After this week&#x27;s test results; use the connector running-change as the hook</div></td></tr>
+        <tr><td><span class="wait-who">Jamie</span></td><td>Follow up with Oakley contact for snow project clarity</td></tr>
+        <tr><td><span class="wait-who">Jamie</span></td><td>Confirm London hotel for the team<div class="wait-ctx">Due Wed 22 Jul; you arrive Mon 3 Aug through Silverstone</div></td></tr>
+        <tr><td><span class="wait-who">James H.</span></td><td>Call with Alex to align on pin housing undercut<div class="wait-ctx">Before today&#x27;s Ion/Specialized call</div></td></tr>
+        <tr><td><span class="wait-who">Alonso</span></td><td>Share cipher and mix options with client<div class="wait-ctx">End of this week; team reviews Monday</div></td></tr>
+        <tr><td><span class="wait-who">Cristian</span></td><td>Send CPIM/CSCP course costs<div class="wait-ctx">So you can raise with Jamie</div></td></tr>
+        <tr><td><span class="wait-who">Cristian</span></td><td>Build Asia facility readiness timeline<div class="wait-ctx">Working back from Jan 2027 production-ready</div></td></tr>
+      </table>
+    </div>
+  </div>
 
   <div class="divider"></div>
 
-  <!-- ══════════ THIS WEEK ══════════ -->
-  <details open>
-    <summary>
-      <div class="collapsible-header">
-        <span class="icon">🗓️</span>
-        <h2>This Week — 13–17 July</h2>
-        <span class="badge">0 remaining</span>
-        <span class="chevron">▶</span>
+  <!-- ══════════ TODAY ══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">📋</span>
+      <h2>Today — Tue 21 July</h2>
+      <span class="badge">8 events</span>
+    </div>
+
+    <div class="meeting-card">
+      <div class="meeting-card-header">
+        <span class="time-badge amber">05:00</span>
+        <div class="meeting-meta">
+          <div class="meeting-title">SHK1 | EON | RLS | Weekly</div>
+          <div class="meeting-attendees">James H., Lisa (EON), Noah (EON), Marium, Alex</div>
+        </div>
       </div>
-    </summary>
-    <div class="collapsible-body">
-      <div class="task-card">
-        <div class="empty">Week complete — no remaining entries in the calendar export for 13–17 July.</div>
+      <div class="meeting-bullets">
+        <div class="meeting-bullet">Studs pin housing: Alex&#x27;s overmold approach — two-step process, two tools, vented and non-vented handled separately to derisk</div>
+        <div class="meeting-bullet">EON reviewing the draft analysis; feedback so far reasonable</div>
+        <div class="meeting-bullet">White paper (5 rad delta) deprioritised — don&#x27;t let it pull resource back in</div>
+        <div class="meeting-bullet">Studs is in genuine R&amp;D territory and urgent; Dyne ranks just above on launch timeline but both run independently</div>
       </div>
     </div>
-  </details>
+
+    <div class="meeting-card">
+      <div class="meeting-card-header">
+        <span class="time-badge blue">08:00</span>
+        <div class="meeting-meta">
+          <div class="meeting-title">Marium / Tony 1:1</div>
+          <div class="meeting-attendees">Marium</div>
+        </div>
+      </div>
+      <div class="meeting-bullets">
+        <div class="meeting-bullet">270-impact targeted tests start today — early read on root cause</div>
+        <div class="meeting-bullet">She&#x27;s pushing TRL final testing to next week and exploring an external lab for parallel drop-table testing; confirm you&#x27;re aligned</div>
+        <div class="meeting-bullet">DFMEA moved to Friday — confirm what still needs to land before it</div>
+        <div class="meeting-bullet alert">She needs the ALSO agenda from you before the 09:00 call</div>
+        <div class="meeting-bullet">KPI docs (checklist support, A-surface 2D template, 30-helmet sampling) still open on your list</div>
+      </div>
+    </div>
+
+    <div class="meeting-card">
+      <div class="meeting-card-header">
+        <span class="time-badge amber">09:00</span>
+        <div class="meeting-meta">
+          <div class="meeting-title">ALSO x RLS Sync</div>
+          <div class="meeting-attendees">Marium, Archie, N. Chenco (RideAlso), Cristian</div>
+        </div>
+      </div>
+      <div class="meeting-bullets">
+        <div class="meeting-bullet">Nathan (PM) confirmed; Alan may join and is interested in test results. Greg is away — separate catch-up needed</div>
+        <div class="meeting-bullet alert">~70% of tools need rework from late electronics integration — get a straight answer on the December date</div>
+        <div class="meeting-bullet">Assemblability and reducing assembly time was last week&#x27;s key thread; Cristian joins the Wednesday SIM call on this</div>
+        <div class="meeting-bullet">Running change on connectors to raise; dual-lock assembly at scale is a QA problem</div>
+      </div>
+    </div>
+
+    <div class="meeting-card">
+      <div class="meeting-card-header">
+        <span class="time-badge blue">10:00</span>
+        <div class="meeting-meta">
+          <div class="meeting-title">Tony / Alex 1:1</div>
+          <div class="meeting-attendees">Alex</div>
+        </div>
+      </div>
+      <div class="meeting-bullets">
+        <div class="meeting-bullet">Pin housing undercut — dual injection vs plug; his call with James should have happened first</div>
+        <div class="meeting-bullet">Studs overmold approach ahead of the EON review</div>
+        <div class="meeting-bullet">Silverstone travel approval still open on your list</div>
+        <div class="meeting-bullet">Possible intermediary role for the China team under the local-production-manager model</div>
+      </div>
+    </div>
+
+    <div class="meeting-card">
+      <div class="meeting-card-header">
+        <span class="time-badge blue">10:30</span>
+        <div class="meeting-meta">
+          <div class="meeting-title">Maria / Tony 1:1</div>
+          <div class="meeting-attendees">Maria</div>
+        </div>
+      </div>
+      <div class="meeting-bullets">
+        <div class="meeting-bullet">TRL radiation swing (17 → 23-24 rads/sec) — she and Archie are the fact-finders; what have they got</div>
+        <div class="meeting-bullet">Whether the DFMEA move to Friday changes anything on her side</div>
+      </div>
+    </div>
+
+    <div class="meeting-card">
+      <div class="meeting-card-header">
+        <span class="time-badge blue">11:00</span>
+        <div class="meeting-meta">
+          <div class="meeting-title">James H. / Tony 1:1</div>
+          <div class="meeting-attendees">James H.</div>
+        </div>
+      </div>
+      <div class="meeting-bullets">
+        <div class="meeting-bullet">Ambush DFM now with Ion — what&#x27;s come back</div>
+        <div class="meeting-bullet">Pin housing alignment with Alex, and the Katie meeting Wednesday on tooling timeline and China travel</div>
+        <div class="meeting-bullet">His August review date still needs setting</div>
+      </div>
+    </div>
+
+    <div class="meeting-card">
+      <div class="meeting-card-header">
+        <span class="time-badge blue">11:45</span>
+        <div class="meeting-meta">
+          <div class="meeting-title">Archie / Tony 1:1</div>
+          <div class="meeting-attendees">Archie</div>
+        </div>
+      </div>
+      <div class="meeting-bullets">
+        <div class="meeting-bullet alert">Both testing anomalies sit with him — TRL radiation and 270-impact. Deep resource shared across Dyne and Studs; watch the load</div>
+        <div class="meeting-bullet">Ambush test plan — frontal coverage options</div>
+        <div class="meeting-bullet">His August review date still needs setting</div>
+      </div>
+    </div>
+
+    <div class="meeting-card">
+      <div class="meeting-card-header">
+        <span class="time-badge amber">15:30</span>
+        <div class="meeting-meta">
+          <div class="meeting-title">OOTO</div>
+          <div class="meeting-attendees">Personal</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="divider"></div>
 
-  <!-- ══════════ NEXT WEEK ══════════ -->
+  <!-- ══════════ REST OF WEEK ══════════ -->
   <details>
     <summary>
       <div class="collapsible-header">
         <span class="icon">🗓️</span>
-        <h2>Next Week — 20–24 July</h2>
-        <span class="badge">28 meetings</span>
+        <h2>Rest of This Week — to 24 July</h2>
+        <span class="badge">15 meetings</span>
         <span class="chevron">▶</span>
       </div>
     </summary>
     <div class="collapsible-body">
 
-      <div class="day-group">
-        <div class="day-label">Mon 20 Jul</div>
-        <div class="week-card">
-          <div class="week-item"><div class="week-dot teal"></div><div class="week-time">08:00</div><div class="week-meeting"><div class="week-title">Asia Production Weekly</div><div class="week-attendees">Cristian + Asia team</div></div></div>
-          <div class="week-item"><div class="week-dot teal"></div><div class="week-time">09:00</div><div class="week-meeting"><div class="week-title">Project Status Update</div><div class="week-attendees">Archie, Alonso, James H., David, Alex, Marium</div></div></div>
-          <div class="week-item"><div class="week-dot blue"></div><div class="week-time">10:00</div><div class="week-meeting"><div class="week-title">Tony + Jamie 1:1</div><div class="week-attendees">Jamie</div></div></div>
-          <div class="week-item"><div class="week-dot purple"></div><div class="week-time">11:00</div><div class="week-meeting"><div class="week-title">AGV Pista: DFMEA Review / Approval to Commercial Pilot</div><div class="week-attendees">Marium, Tony, Archie, Maria, Cristian, Noah, Darcy, James H., David, Alonso</div></div></div>
-          <div class="week-item"><div class="week-dot amber"></div><div class="week-time">12:00</div><div class="week-meeting"><div class="week-title">SHK1 | RLS | Weekly</div><div class="week-attendees">James H., Studson (Herold, McClard), Marium, Darcy</div></div></div>
-        </div>
-      </div>
-      <div class="day-group">
-        <div class="day-label">Tue 21 Jul</div>
-        <div class="week-card">
-          <div class="week-item"><div class="week-dot amber"></div><div class="week-time">05:00</div><div class="week-meeting"><div class="week-title">SHK1 | EON | RLS | Weekly</div><div class="week-attendees">James H., Lisa (EON), Noah (EON)</div></div></div>
-          <div class="week-item"><div class="week-dot blue"></div><div class="week-time">08:00</div><div class="week-meeting"><div class="week-title">Marium / Tony 1:1</div><div class="week-attendees">Marium</div></div></div>
-          <div class="week-item"><div class="week-dot amber"></div><div class="week-time">09:00</div><div class="week-meeting"><div class="week-title">ALSO x RLS Sync</div><div class="week-attendees">Marium, Archie, N. Chenco (RideAlso), Cristian</div></div></div>
-          <div class="week-item"><div class="week-dot blue"></div><div class="week-time">10:00</div><div class="week-meeting"><div class="week-title">Tony / Alex 1:1</div><div class="week-attendees">Alex</div></div></div>
-          <div class="week-item"><div class="week-dot blue"></div><div class="week-time">10:30</div><div class="week-meeting"><div class="week-title">Maria / Tony 1:1</div><div class="week-attendees">Maria</div></div></div>
-          <div class="week-item"><div class="week-dot blue"></div><div class="week-time">11:00</div><div class="week-meeting"><div class="week-title">James H. / Tony 1:1</div><div class="week-attendees">James H.</div></div></div>
-          <div class="week-item"><div class="week-dot blue"></div><div class="week-time">11:45</div><div class="week-meeting"><div class="week-title">Archie / Tony 1:1</div><div class="week-attendees">Archie</div></div></div>
-          <div class="week-item"><div class="week-dot amber"></div><div class="week-time">15:30</div><div class="week-meeting"><div class="week-title">OOTO</div><div class="week-attendees">Tony (personal)</div></div></div>
-        </div>
-      </div>
       <div class="day-group">
         <div class="day-label">Wed 22 Jul</div>
         <div class="week-card">
@@ -504,7 +560,7 @@
           <div class="week-item"><div class="week-dot blue"></div><div class="week-time">09:30</div><div class="week-meeting"><div class="week-title">Tony + Dickens 1:1</div><div class="week-attendees">Dickens</div></div></div>
           <div class="week-item"><div class="week-dot amber"></div><div class="week-time">10:30</div><div class="week-meeting"><div class="week-title">RLS | Specialized Wednesday Sync</div><div class="week-attendees">Katie Martonchik, James H., Alonso</div></div></div>
           <div class="week-item"><div class="week-dot blue"></div><div class="week-time">11:00</div><div class="week-meeting"><div class="week-title">Tony / CP</div><div class="week-attendees">Chris P.</div></div></div>
-          <div class="week-item"><div class="week-dot amber"></div><div class="week-time">12:00</div><div class="week-meeting"><div class="week-title">Highlight Lowlight Prep</div><div class="week-attendees">Tony (solo)</div></div></div>
+          <div class="week-item"><div class="week-dot amber"></div><div class="week-time">12:00</div><div class="week-meeting"><div class="week-title">Highlight Lowlight Prep</div><div class="week-attendees">Solo</div></div></div>
         </div>
       </div>
       <div class="day-group">
@@ -524,6 +580,79 @@
           <div class="week-item"><div class="week-dot teal"></div><div class="week-time">09:00</div><div class="week-meeting"><div class="week-title">End of Week Catchup</div><div class="week-attendees">Alex, Dickens, Marium, Cristian</div></div></div>
           <div class="week-item"><div class="week-dot teal"></div><div class="week-time">11:00</div><div class="week-meeting"><div class="week-title">Weekly Lab Cleanup</div><div class="week-attendees">Full team</div></div></div>
         </div>
+      </div>
+
+      <div class="watch-strip">
+        <strong>Watch this week:</strong> BPA deadline Thu 24 Jul · AGV Pista DFMEA moved to Fri · SLT wanted Fri 24 Jul once test results land · Alonso's two Read options due end of week · Dissident EPS decision due end of week
+      </div>
+
+    </div>
+  </details>
+
+  <div class="divider"></div>
+
+  <!-- ══════════ NEXT WEEK ══════════ -->
+  <details>
+    <summary>
+      <div class="collapsible-header">
+        <span class="icon">🗓️</span>
+        <h2>Next Week — 27–31 July</h2>
+        <span class="badge">22 meetings</span>
+        <span class="chevron">▶</span>
+      </div>
+    </summary>
+    <div class="collapsible-body">
+
+      <div class="day-group">
+        <div class="day-label">Mon 27 Jul</div>
+        <div class="week-card">
+          <div class="week-item"><div class="week-dot teal"></div><div class="week-time">08:00</div><div class="week-meeting"><div class="week-title">Asia Production Weekly</div><div class="week-attendees">Cristian</div></div></div>
+          <div class="week-item"><div class="week-dot teal"></div><div class="week-time">09:00</div><div class="week-meeting"><div class="week-title">Project Status Update</div><div class="week-attendees">Archie, Alonso, James H., David, Alex, Marium</div></div></div>
+          <div class="week-item"><div class="week-dot blue"></div><div class="week-time">10:00</div><div class="week-meeting"><div class="week-title">Tony + Jamie 1:1</div><div class="week-attendees">Jamie</div></div></div>
+          <div class="week-item"><div class="week-dot amber"></div><div class="week-time">12:00</div><div class="week-meeting"><div class="week-title">SHK1 | RLS | Weekly</div><div class="week-attendees">James H., Studson (Herold, McClard), Marium, Darcy</div></div></div>
+        </div>
+      </div>
+      <div class="day-group">
+        <div class="day-label">Tue 28 Jul</div>
+        <div class="week-card">
+          <div class="week-item"><div class="week-dot amber"></div><div class="week-time">05:00</div><div class="week-meeting"><div class="week-title">SHK1 | EON | RLS | Weekly</div><div class="week-attendees">James H., Lisa (EON), Noah (EON)</div></div></div>
+          <div class="week-item"><div class="week-dot blue"></div><div class="week-time">08:00</div><div class="week-meeting"><div class="week-title">Marium / Tony 1:1</div><div class="week-attendees">Marium</div></div></div>
+          <div class="week-item"><div class="week-dot blue"></div><div class="week-time">10:00</div><div class="week-meeting"><div class="week-title">Tony / Alex 1:1</div><div class="week-attendees">Alex</div></div></div>
+          <div class="week-item"><div class="week-dot blue"></div><div class="week-time">11:00</div><div class="week-meeting"><div class="week-title">James H. / Tony 1:1</div><div class="week-attendees">James H.</div></div></div>
+          <div class="week-item"><div class="week-dot blue"></div><div class="week-time">11:45</div><div class="week-meeting"><div class="week-title">Archie / Tony 1:1</div><div class="week-attendees">Archie</div></div></div>
+        </div>
+      </div>
+      <div class="day-group">
+        <div class="day-label">Wed 29 Jul</div>
+        <div class="week-card">
+          <div class="week-item"><div class="week-dot teal"></div><div class="week-time">05:30</div><div class="week-meeting"><div class="week-title">RLS / SIM Weekly Dev Meeting</div><div class="week-attendees">Archie, Alex, Marium + SIM team</div></div></div>
+          <div class="week-item"><div class="week-dot teal"></div><div class="week-time">08:00</div><div class="week-meeting"><div class="week-title">Canyon Aero Weekly Update</div><div class="week-attendees">Alonso, Cristian, Marium</div></div></div>
+          <div class="week-item"><div class="week-dot blue"></div><div class="week-time">09:00</div><div class="week-meeting"><div class="week-title">Industrial Design &amp; Detailing Drop-in</div><div class="week-attendees">James H., David, Alonso, Archie</div></div></div>
+          <div class="week-item"><div class="week-dot blue"></div><div class="week-time">09:30</div><div class="week-meeting"><div class="week-title">Tony + Dickens 1:1</div><div class="week-attendees">Dickens</div></div></div>
+          <div class="week-item"><div class="week-dot amber"></div><div class="week-time">10:30</div><div class="week-meeting"><div class="week-title">RLS | Specialized Wednesday Sync</div><div class="week-attendees">Katie Martonchik, James H., Alonso</div></div></div>
+          <div class="week-item"><div class="week-dot blue"></div><div class="week-time">11:00</div><div class="week-meeting"><div class="week-title">Tony / CP</div><div class="week-attendees">Chris P.</div></div></div>
+          <div class="week-item"><div class="week-dot amber"></div><div class="week-time">12:00</div><div class="week-meeting"><div class="week-title">Highlight Lowlight Prep</div><div class="week-attendees">Solo</div></div></div>
+        </div>
+      </div>
+      <div class="day-group">
+        <div class="day-label">Thu 30 Jul</div>
+        <div class="week-card">
+          <div class="week-item"><div class="week-dot blue"></div><div class="week-time">08:00</div><div class="week-meeting"><div class="week-title">Cristian / Tony 1:1</div><div class="week-attendees">Cristian</div></div></div>
+          <div class="week-item"><div class="week-dot blue"></div><div class="week-time">10:00</div><div class="week-meeting"><div class="week-title">David / Tony 1:1</div><div class="week-attendees">David</div></div></div>
+          <div class="week-item"><div class="week-dot blue"></div><div class="week-time">11:00</div><div class="week-meeting"><div class="week-title">Alonso / Tony 1:1</div><div class="week-attendees">Alonso</div></div></div>
+          <div class="week-item"><div class="week-dot purple"></div><div class="week-time">11:00</div><div class="week-meeting"><div class="week-title">SLT Meeting</div><div class="week-attendees">James, Dickens, Chris</div></div></div>
+        </div>
+      </div>
+      <div class="day-group">
+        <div class="day-label">Fri 31 Jul</div>
+        <div class="week-card">
+          <div class="week-item"><div class="week-dot teal"></div><div class="week-time">05:30</div><div class="week-meeting"><div class="week-title">Pista R3 Dainese-HEXR Weekly</div><div class="week-attendees">Dainese team, Archie, Maria</div></div></div>
+          <div class="week-item"><div class="week-dot amber"></div><div class="week-time">08:00</div><div class="week-meeting"><div class="week-title">Nick / Tony Biweekly</div><div class="week-attendees">Nick (Branston Design)</div></div></div>
+        </div>
+      </div>
+
+      <div class="watch-strip">
+        <strong>Ahead:</strong> Board meeting first week of August — Gary alignment needed before it. You're in London from Mon 3 Aug through Silverstone.
       </div>
 
     </div>
